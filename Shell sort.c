@@ -5,7 +5,7 @@
 #define N 500000
 
 void lectura(int array[]);
-void burbuja(int array[], int contador);
+void shell(int array[], int contador);
 
 int main(){
     time_t t_1, t_2;
@@ -16,11 +16,11 @@ int main(){
     for(contador = 10000; contador < N; contador = contador + 10000){
 
         t_1 = time(NULL);
-        burbuja(array, contador);
+        shell(array, contador);
         t_2 = time(NULL);
 
         //printf("\nS.O: Windows\n");
-        //printf("Algoritmo: Bubble Sort\n");
+        //printf("Algoritmo: Shell Sort\n");
         printf("%d;%lf\n", contador, difftime(t_2, t_1));
     }
 
@@ -40,19 +40,25 @@ void lectura(int array[]){
     fclose(entrada);
 }
 
-void burbuja(int array[], int contador){
 
-    int i, j, aux;
-    for(i = 0; i < contador-1; i++){
+void shell(int array[], int contador){
 
-        for(j = 0; j < contador-i-1; j++){
+    int cambios = 1, aux;
 
-            if (array[j+1] < array[j]){
-
-                aux = array[j+1];
-                array[j+1] = array[j];
-                array[j] = aux;
+    for(salto = contador/2; salto != 0; salto = salto/2){
+        cambios = 1;
+        while (cambios != 0){
+            cambios = 0;
+            for(i = salto; i < contador; i++){
+                if(array[i-salto] > array[i]){
+                    aux = array[i];
+                    array[i] = array[i - salto];
+                    array[i - salto] = aux;
+                    cambios++;
+                }
             }
         }
+        
     }
+    return 0;
 }
