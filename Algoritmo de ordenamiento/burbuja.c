@@ -28,7 +28,7 @@ int main(){
 }
 
 void lectura(int array[]){
-    FILE *entrada = fopen("datos_ascendente.txt", "r");
+    FILE *entrada = fopen("datos_descendentes", "r");
     int i = 0;
 
     for(i = 0; i <= N ; i++){
