@@ -18,7 +18,7 @@ int main(){
         shell(array, contador);
         t_f = time(NULL);
 
-        printf("%d:%lf\n", contador, difftime(t_f, t_i));
+        printf("%d:%.3lf\n", contador, difftime(t_f, t_i));
     }
     
     return 0;
@@ -27,7 +27,7 @@ int main(){
 
 void leer(int array[]){
 
-    FILE *lectura = fopen("aleatorios.txt", "r");
+    FILE *lectura = fopen("datos_descendente.txt", "r");
     int i;
 
     for(i = 0; i <= N; i++){
