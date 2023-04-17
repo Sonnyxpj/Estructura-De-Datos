@@ -9,7 +9,7 @@ int main(){
     srand(time(0));
     numero=1000000;
     //printf("%d\n",numero);
-    for (i=0; i< numero; i++){
+    for (i=1; i<= numero; i++){
         fprintf(datos, "%d\n", i);
     }
 
