@@ -1,7 +1,9 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <sys/time.h>
+#include <sys/resource.h>
 #include <string.h>
+
 
 void lectura(int array[], int maximo, char[]);
 void burbuja(int array[], int contador);
@@ -11,17 +13,20 @@ int particion (int array[], int bajo, int alto);
 void quickSort(int array[], int bajo, int alto);
 
 
-//Programa, Algoritmo, Forma de los datos, Cantidad 
+struct rusage usada;
+
 int main(int argc, char *argv[]){
-    //argv[i], i = 0: nombre del programa, i = 1: primer argumento y sucesivamente
-    time_t t_1, t_2;
+
+    struct timeval t_1, t_2;  
+    double tiempo; 
     int maximo = atoi(argv[3]); //atoi convierte un char en un int
     int array[maximo], contador;
     lectura(array, maximo, argv[2]);
 
     for(contador = 10000; contador <= maximo; contador = contador + 10000){
 
-    t_1 = time(NULL);
+    gettimeofday(&t_1,NULL); 
+    getrusage(RUSAGE_SELF, &usada);
 
     if (strcmp(argv[1], "burbuja") == 0){
         burbuja(array, contador);
@@ -32,10 +37,15 @@ int main(int argc, char *argv[]){
     else if (strcmp(argv[1], "quick") == 0){
         quickSort(array, 0, contador-1);
     }
-    t_2 = time(NULL);
+    gettimeofday(&t_2,NULL);
+    
 
-    printf("%d;%lf\n", contador, difftime(t_2, t_1));
+    tiempo = (t_2.tv_sec - t_1.tv_sec)*1000 + (t_2.tv_usec - t_1.tv_usec)/1000;
+
+    printf("%d;%g;%ldB\n", contador, tiempo/1000, usada.ru_maxrss);
     }
+    
+    printf("%ldB\n", usada.ru_maxrss);
 
     return 0;
 }
@@ -71,7 +81,6 @@ void burbuja(int array[], int contador){
 }
     
 void shell(int array[], int contador){
-
     int salto, cambios, i, aux;
 
     for(salto = contador/2; salto!=0; salto = salto/2){
