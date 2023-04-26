@@ -1,55 +1,50 @@
 #include <stdio.h>
+#include <time.h>
 #include <stdlib.h>
-#include <sys/time.h>
-#include <sys/resource.h>
+#include <string.h>
 
-#define N 1000000
-
-void lectura(int array[]);
+void lectura(int array[], int maximo, char[]);
 void burbuja(int array[], int contador);
 void shell(int array[], int contador);
-
 void swap(int* a, int* b);
 int particion (int array[], int bajo, int alto);
 void quickSort(int array[], int bajo, int alto);
 
 
-struct rusage usada;
+//Programa, Algoritmo, Forma de los datos, Cantidad 
+int main(int argc, char *argv[]){
+    //argv[i], i = 0: nombre del programa, i = 1: primer argumento y sucesivamente
+    time_t t_1, t_2;
+    int maximo = atoi(argv[3]); //atoi convierte un char en un int
+    int array[maximo], contador;
+    lectura(array, maximo, argv[2]);
 
-int main(){
+    for(contador = 10000; contador <= maximo; contador = contador + 10000){
 
-    getrusage(RUSAGE_SELF, &usada);
-    struct timeval t_1, t_2;  
-    double tiempo; 
-    int array[N], contador;
+    t_1 = time(NULL);
 
-    lectura(array);
-
-    for(contador = 10000; contador <= N; contador = contador + 10000){
-
-    gettimeofday(&t_1,NULL); 
-
-    //burbuja(array, contador);
-    //shell(array, contador);
-    quickSort(array, 0, contador-1);
-
-    gettimeofday(&t_2,NULL);
-
-    tiempo = (t_2.tv_sec - t_1.tv_sec)*1000 + (t_2.tv_usec - t_1.tv_usec)/1000;
-
-    printf("%d;%g;%ldB\n", contador, tiempo/1000, usada.ru_maxrss);
+    if (strcmp(argv[1], "burbuja") == 0){
+        burbuja(array, contador);
     }
-    
-    printf("%ldB\n", usada.ru_maxrss);
+    else if (strcmp(argv[1], "shell") == 0){
+        shell(array, contador);
+    }
+    else if (strcmp(argv[1], "quick") == 0){
+        quickSort(array, 0, contador-1);
+    }
+    t_2 = time(NULL);
+
+    printf("%d;%lf\n", contador, difftime(t_2, t_1));
+    }
 
     return 0;
 }
 
-void lectura(int array[]){
-    FILE *entrada = fopen("datos.txt", "r");
+void lectura(int array[], int n, char tipo[]){
+    FILE *entrada = fopen(tipo, "r");
     int i = 0;
 
-    for(i = 0; i < N ; i++){
+    for(i = 0; i < n ; i++){
         int numero;
         fscanf(entrada, "%d", &numero);
         array[i] = numero;
@@ -76,6 +71,7 @@ void burbuja(int array[], int contador){
 }
     
 void shell(int array[], int contador){
+
     int salto, cambios, i, aux;
 
     for(salto = contador/2; salto!=0; salto = salto/2){
