@@ -27,6 +27,7 @@ void add_inicio(struct lista **L, int elem){
     p->clave = elem;//se le asigna el valor elem a la subvariable "clave" de p
     p->sig = *L;//se le asigna a la subvariable "sig" de p la direccion de memoria de L, si la lista esta vacia L es NULL, porlotanto el primer elemento apuntaria a NULL
     *L = p;//se le asigna a la estructura L el contenido de p
+    free(p);
 }
 
 void recorre(struct lista **L){
