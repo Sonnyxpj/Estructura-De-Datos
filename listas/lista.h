@@ -138,6 +138,4 @@ void add_medio(struct lista **L,int posicion, int elem){
         }
         b->sig = c;
         c->sig = a;
-        
-    
 }
