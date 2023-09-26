@@ -1,0 +1,14 @@
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ej2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ej2.AssemblyInfoInputs.cache
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ej2.AssemblyInfo.cs
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ej2.csproj.CoreCompileInputs.cache
+C:\Users\Benja\Documents\codigos c#\ej2\bin\Debug\net7.0\ej2.exe
+C:\Users\Benja\Documents\codigos c#\ej2\bin\Debug\net7.0\ej2.deps.json
+C:\Users\Benja\Documents\codigos c#\ej2\bin\Debug\net7.0\ej2.runtimeconfig.json
+C:\Users\Benja\Documents\codigos c#\ej2\bin\Debug\net7.0\ej2.dll
+C:\Users\Benja\Documents\codigos c#\ej2\bin\Debug\net7.0\ej2.pdb
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ej2.dll
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\refint\ej2.dll
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ej2.pdb
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ej2.genruntimeconfig.cache
+C:\Users\Benja\Documents\codigos c#\ej2\obj\Debug\net7.0\ref\ej2.dll
